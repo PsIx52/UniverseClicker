@@ -10,7 +10,7 @@ let progress = 0; // Initialize progress variable
 let energy = 100;
 
 document.getElementById('click-button').addEventListener('click', () => {
-    lastClick = Date.now(); // Update lastClick on user click
+    lastClick = Date.now(); 
     if (energy > 1) {
         energy -= 2;
         document.getElementById('Energy').textContent = energy + "/100";
