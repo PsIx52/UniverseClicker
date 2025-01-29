@@ -1,124 +1,139 @@
+<style>
+    .list-upgrade1{
+        overflow: hidden;
+    }
+
+    .list-upgrade2{
+        overflow: hidden;
+    }
+
+    .list-upgrade3{
+        overflow: hidden;
+    }
+</style>
 <body>
+<div id="shop-modal" class="flex">
+    <div id="shop-page" class="bg-black rounded-lg p-0"> <!-- Added margin -->
+        <div class="py-4"> <!-- Changed p-4 to p-0 -->
+            <div class="relative h-40 mb-6 rounded-lg overflow-hidden">
+                <img src="pictures/bonus.avif" alt="Special Offer" class="w-full h-full object-cover">
+                <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80">
+                    <h2 class="text-xl font-bold">Специальное предложение</h2>
+                    <p class="text-11 text-gray-300">Удвоенные бонусы весь день!</p>
+                </div>
+            </div>
+            <div class="flex space-x-4 mb-6 overflow-x-auto -webkit-scrollbar-thumb">
+                <button id="busters" class="px-6 py-2 bg-[#111827] rounded-full text-11 font-medium text-white whitespace-nowrap upgrade-item" onclick="showUpgrades(1)">Бустеры</button>
+                <button id="skins" class="px-6 py-2 bg-[#111827] rounded-full text-11 font-medium text-white whitespace-nowrap upgrade-item" onclick="showUpgrades(2)">Скины</button>
+                <button id="specials" class="px-6 py-2 bg-[#111827] rounded-full text-11 font-medium text-white whitespace-nowrap upgrade-item" onclick="showUpgrades(3)">Специальные</button>
+            </div>
+            <div id="list-upgrade1" class="grid grid-cols-2 gap-4 mx-auto list-upgrade1">
+                <div class="bg-[#111827] rounded-lg p-4">
+                    <img src="pictures/2x.png" alt="2x Множитель" class="w-36 h-36 object-cover rounded-lg mb-3">
+                    <h3 class="text-11 font-medium mb-2 whitespace-nowrap ellipsis">2x Множитель</h3>
+                    <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-11 font-medium flex items-center justify-center">
+                        <i class="fas fa-gem text-purple-400 mr-2"></i>
+                        100
+                    </button>
+                </div>
+                <div class="bg-[#111827] rounded-lg p-4">
+                    <img src="pictures/auto_click.png" alt="Авто-клик" class="w-36 h-36 object-cover rounded-lg mb-3">
+                    <h3 class="text-11 font-medium mb-2 whitespace-nowrap ellipsis">Авто-клик</h3>
+                    <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-11 font-medium flex items-center justify-center">
+                        <i class="fas fa-gem text-purple-400 mr-2"></i>
+                        250
+                    </button>
+                </div>
+                <div class="bg-[#111827] rounded-lg p-4">
+                    <img src="pictures/gold_cursor.webp" alt="Золотой курсор" class="w-36 h-36 object-cover rounded-lg mb-3">
+                    <h3 class="text-11 font-medium mb-2 whitespace-nowrap ellipsis">Золотой курсор</h3>
+                    <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-11 font-medium flex items-center justify-center">
+                        <i class="fas fa-gem text-purple-400 mr-2"></i>
+                        500
+                    </button>
+                </div>
+                <div class="bg-[#111827] rounded-lg p-4">
+                    <img src="pictures/rainbow.jpeg" alt="Радужный эффект" class="w-36 h-36 object-cover rounded-lg mb-3">
+                    <h3 class="text-11 font-medium mb-2 whitespace-nowrap ellipsis">Радужный</h3>
+                    <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-11 font-medium flex items-center justify-center">
+                        <i class="fas fa-gem text-purple-400 mr-2"></i>
+                        750
+                    </button>
+                </div>
+            </div>
     
-<div id="shop-page" class="bg-black rounded-lg p-4">
-    <div class="p-4">
-        <div class="relative h-40 mb-6 rounded-lg overflow-hidden">
-            <img src="pictures/bonus.avif" alt="Special Offer" class="w-full h-full object-cover">
-            <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80">
-                <h2 class="text-xl font-bold">Специальное предложение</h2>
-                <p class="text-sm text-gray-300">Удвоенные бонусы весь день!</p>
+            <div id="list-upgrade2" class="hidden grid grid-cols-2 gap-4 mx-auto list-upgrade2">
+                <div class="bg-[#111827] rounded-lg p-4">
+                    <img src="pictures/2x.png" alt="2x Множитель" class="w-36 h-36 object-cover rounded-lg mb-3">
+                    <h3 class="text-11 font-medium mb-2 whitespace-nowrap ellipsis">Скин чебурашки</h3>
+                    <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-11 font-medium flex items-center justify-center">
+                        <i class="fas fa-gem text-purple-400 mr-2"></i>
+                        100
+                    </button>
+                </div>
+                <div class="bg-[#111827] rounded-lg p-4">
+                    <img src="pictures/auto_click.png" alt="Авто-клик" class="w-36 h-36 object-cover rounded-lg mb-3">
+                    <h3 class="text-11 font-medium mb-2 whitespace-nowrap ellipsis">Бугатти Веер</h3>
+                    <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-11 font-medium flex items-center justify-center">
+                        <i class="fas fa-gem text-purple-400 mr-2"></i>
+                        250
+                    </button>
+                </div>
+                <div class="bg-[#111827] rounded-lg p-4">
+                    <img src="pictures/gold_cursor.webp" alt="Золотой курсор" class="w-36 h-36 object-cover rounded-lg mb-3">
+                    <h3 class="text-11 font-medium mb-2 whitespace-nowrap ellipsis">Золотой курсор</h3>
+                    <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-11 font-medium flex items-center justify-center">
+                        <i class="fas fa-gem text-purple-400 mr-2"></i>
+                        500
+                    </button>
+                </div>
+                <div class="bg-[#111827] rounded-lg p-4">
+                    <img src="pictures/rainbow.jpeg" alt="Радужный эффект" class="w-36 h-36 object-cover rounded-lg mb-3">
+                    <h3 class="text-11 font-medium mb-2 whitespace-nowrap ellipsis">Радужный эффект аываы</h3>
+                    <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-11 font-medium flex items-center justify-center">
+                        <i class="fas fa-gem text-purple-400 mr-2"></i>
+                        750
+                    </button>
+                </div>
             </div>
-        </div>
-        <div class="flex space-x-4 mb-6 overflow-x-auto">
-            <button id="busters" class="px-6 py-2 bg-[#111827] rounded-full text-sm font-medium text-white whitespace-nowrap upgrade-item">Бустеры</button>
-            <button id="skins" class="px-6 py-2 bg-[#111827] rounded-full text-sm font-medium text-white whitespace-nowrap upgrade-item">Скины</button>
-            <button id="specials" class="px-6 py-2 bg-[#111827] rounded-full text-sm font-medium text-white whitespace-nowrap upgrade-item">Специальные</button>
-        </div>
-        <div id="list-upgrade1" class="hidden grid grid-cols-2 gap-4">
-            <div class="bg-[#111827] rounded-lg p-4">
-                <img src="pictures/2x.png" alt="2x Множитель" class="w-36 h-36 object-cover rounded-lg mb-3">
-                <h3 class="text-sm font-medium mb-2 whitespace-nowrap ellipsis">2x Множитель</h3>
-                <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-sm font-medium flex items-center justify-center">
-                    <i class="fas fa-gem text-purple-400 mr-2"></i>
-                    100
-                </button>
-            </div>
-            <div class="bg-[#111827] rounded-lg p-4">
-                <img src="pictures/auto_click.png" alt="Авто-клик" class="w-36 h-36 object-cover rounded-lg mb-3">
-                <h3 class="text-sm font-medium mb-2 whitespace-nowrap ellipsis">Авто-клик</h3>
-                <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-sm font-medium flex items-center justify-center">
-                    <i class="fas fa-gem text-purple-400 mr-2"></i>
-                    250
-                </button>
-            </div>
-            <div class="bg-[#111827] rounded-lg p-4">
-                <img src="pictures/gold_cursor.webp" alt="Золотой курсор" class="w-36 h-36 object-cover rounded-lg mb-3">
-                <h3 class="text-sm font-medium mb-2 whitespace-nowrap ellipsis">Золотой курсор</h3>
-                <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-sm font-medium flex items-center justify-center">
-                    <i class="fas fa-gem text-purple-400 mr-2"></i>
-                    500
-                </button>
-            </div>
-            <div class="bg-[#111827] rounded-lg p-4">
-                <img src="pictures/rainbow.jpeg" alt="Радужный эффект" class="w-36 h-36 object-cover rounded-lg mb-3">
-                <h3 class="text-sm font-medium mb-2 whitespace-nowrap ellipsis">Радужный эффект аываы</h3>
-                <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-sm font-medium flex items-center justify-center">
-                    <i class="fas fa-gem text-purple-400 mr-2"></i>
-                    750
-                </button>
-            </div>
-        </div>
-
-        <div id="list-upgrade2" class="hidden grid-cols-2 gap-4">
-            <div class="bg-[#111827] rounded-lg p-4">
-                <img src="pictures/2x.png" alt="2x Множитель" class="w-36 h-36 object-cover rounded-lg mb-3">
-                <h3 class="text-sm font-medium mb-2 whitespace-nowrap ellipsis">2x Множитель</h3>
-                <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-sm font-medium flex items-center justify-center">
-                    <i class="fas fa-gem text-purple-400 mr-2"></i>
-                    100
-                </button>
-            </div>
-            <div class="bg-[#111827] rounded-lg p-4">
-                <img src="pictures/auto_click.png" alt="Авто-клик" class="w-36 h-36 object-cover rounded-lg mb-3">
-                <h3 class="text-sm font-medium mb-2 whitespace-nowrap ellipsis">Авто-клик</h3>
-                <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-sm font-medium flex items-center justify-center">
-                    <i class="fas fa-gem text-purple-400 mr-2"></i>
-                    250
-                </button>
-            </div>
-            <div class="bg-[#111827] rounded-lg p-4">
-                <img src="pictures/gold_cursor.webp" alt="Золотой курсор" class="w-36 h-36 object-cover rounded-lg mb-3">
-                <h3 class="text-sm font-medium mb-2 whitespace-nowrap ellipsis">Золотой курсор</h3>
-                <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-sm font-medium flex items-center justify-center">
-                    <i class="fas fa-gem text-purple-400 mr-2"></i>
-                    500
-                </button>
-            </div>
-            <div class="bg-[#111827] rounded-lg p-4">
-                <img src="pictures/rainbow.jpeg" alt="Радужный эффект" class="w-36 h-36 object-cover rounded-lg mb-3">
-                <h3 class="text-sm font-medium mb-2 whitespace-nowrap ellipsis">Радужный эффект аываы</h3>
-                <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-sm font-medium flex items-center justify-center">
-                    <i class="fas fa-gem text-purple-400 mr-2"></i>
-                    750
-                </button>
-            </div>
-        </div>
-
-        <div id="list-upgrade3" class="hidden grid-cols-2 gap-4">
-            <div class="bg-[#111827] rounded-lg p-4">
-                <img src="pictures/2x.png" alt="2x Множитель" class="w-36 h-36 object-cover rounded-lg mb-3">
-                <h3 class="text-sm font-medium mb-2 whitespace-nowrap ellipsis">2x Множитель</h3>
-                <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-sm font-medium flex items-center justify-center">
-                    <i class="fas fa-gem text-purple-400 mr-2"></i>
-                    100
-                </button>
-            </div>
-            <div class="bg-[#111827] rounded-lg p-4">
-                <img src="pictures/auto_click.png" alt="Авто-клик" class="w-36 h-36 object-cover rounded-lg mb-3">
-                <h3 class="text-sm font-medium mb-2 whitespace-nowrap ellipsis">Авто-клик</h3>
-                <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-sm font-medium flex items-center justify-center">
-                    <i class="fas fa-gem text-purple-400 mr-2"></i>
-                    250
-                </button>
-            </div>
-            <div class="bg-[#111827] rounded-lg p-4">
-                <img src="pictures/gold_cursor.webp" alt="Золотой курсор" class="w-36 h-36 object-cover rounded-lg mb-3">
-                <h3 class="text-sm font-medium mb-2 whitespace-nowrap ellipsis">Золотой курсор</h3>
-                <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-sm font-medium flex items-center justify-center">
-                    <i class="fas fa-gem text-purple-400 mr-2"></i>
-                    500
-                </button>
-            </div>
-            <div class="bg-[#111827] rounded-lg p-4">
-                <img src="pictures/rainbow.jpeg" alt="Радужный эффект" class="w-36 h-36 object-cover rounded-lg mb-3">
-                <h3 class="text-sm font-medium mb-2 whitespace-nowrap ellipsis">Радужный эффект аываы</h3>
-                <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-sm font-medium flex items-center justify-center">
-                    <i class="fas fa-gem text-purple-400 mr-2"></i>
-                    750
-                </button>
+    
+            <div id="list-upgrade3" class="hidden grid grid-cols-2 gap-4 mx-auto list-upgrade3">
+                <div class="bg-[#111827] rounded-lg p-4">
+                    <img src="pictures/2x.png" alt="2x Множитель" class="w-36 h-36 object-cover rounded-lg mb-3">
+                    <h3 class="text-11 font-medium mb-2 whitespace-nowrap ellipsis">2x Множитель</h3>
+                    <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-11 font-medium flex items-center justify-center">
+                        <i class="fas fa-gem text-purple-400 mr-2"></i>
+                        100
+                    </button>
+                </div>
+                <div class="bg-[#111827] rounded-lg p-4">
+                    <img src="pictures/auto_click.png" alt="Авто-клик" class="w-36 h-36 object-cover rounded-lg mb-3">
+                    <h3 class="text-11 font-medium mb-2 whitespace-nowrap ellipsis">Авто-клик</h3>
+                    <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-11 font-medium flex items-center justify-center">
+                        <i class="fas fa-gem text-purple-400 mr-2"></i>
+                        250
+                    </button>
+                </div>
+                <div class="bg-[#111827] rounded-lg p-4">
+                    <img src="pictures/gold_cursor.webp" alt="Золотой курсор" class="w-36 h-36 object-cover rounded-lg mb-3">
+                    <h3 class="text-11 font-medium mb-2 whitespace-nowrap ellipsis">Золотой курсор</h3>
+                    <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-11 font-medium flex items-center justify-center">
+                        <i class="fas fa-gem text-purple-400 mr-2"></i>
+                        500
+                    </button>
+                </div>
+                <div class="bg-[#111827] rounded-lg p-4">
+                    <img src="pictures/rainbow.jpeg" alt="Радужный эффект" class="w-36 h-36 object-cover rounded-lg mb-3">
+                    <h3 class="text-11 font-medium mb-2 whitespace-nowrap ellipsis">Запрещенка</h3>
+                    <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-11 font-medium flex items-center justify-center">
+                        <i class="fas fa-gem text-purple-400 mr-2"></i>
+                        750
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 <script src="../JS/shop.js"></script>
 </body>
