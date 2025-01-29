@@ -1,37 +1,65 @@
-document.addEventListener("DOMContentLoaded", function() {
+window.showUpgrades = function(buttonNumber) {
+    console.log("Button Number:", buttonNumber); // Log the button number
+    const listUpgrade1 = document.querySelectorAll('.list-upgrade1')[0];
+    const listUpgrade2 = document.querySelectorAll('.list-upgrade2')[0];
+    const listUpgrade3 = document.querySelectorAll('.list-upgrade3')[0];
 
+    function hideAllModals() {
+        if (listUpgrade1) listUpgrade1.classList.add("hidden");
+        if (listUpgrade2) listUpgrade2.classList.add("hidden");
+        if (listUpgrade3) listUpgrade3.classList.add("hidden");
+    }
+
+    function showModal(modal) {
+        if (modal) {
+            console.log("Showing Modal:", modal); // Log the modal being shown
+            modal.classList.remove("hidden");
+        }
+    }
+
+    hideAllModals();
+
+    switch (buttonNumber) {
+        case 1:
+            showModal(listUpgrade1);
+            break;
+        case 2:
+            showModal(listUpgrade2);
+            break;
+        case 3:
+            showModal(listUpgrade3);
+            break;
+        default:
+            break;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
     const shop_button = document.getElementById('shop-button');
+    const listUpgrade1 = document.getElementById("list-upgrade1");
     const busters = document.getElementById('busters');
     const skins = document.getElementById('skins');
     const specials = document.getElementById('specials');
-    
-    const listUpgrade1 = document.getElementById("list-upgrade1");
-    const listUpgrade2 = document.getElementById("list-upgrade2");
-    const listUpgrade3 = document.getElementById("list-upgrade3");
-
-    function hideAllModals() {
-        listUpgrade1.classList.add("hidden");
-        listUpgrade2.classList.add("hidden");
-        listUpgrade3.classList.add("hidden");
-    }
 
     shop_button.addEventListener("click", function() {
-        hideAllModals();
-        listUpgrade1.classList.remove("hidden");
+        if (listUpgrade1) listUpgrade1.classList.remove("hidden");
     });
 
-    busters.addEventListener("click", function() {
-        hideAllModals();
-        listUpgrade1.classList.remove("hidden");
-    });
+    if (busters) {
+        busters.addEventListener("click", function() {
+            window.showUpgrades(1);
+        });
+    }
 
-    skins.addEventListener("click", function() {
-        hideAllModals();
-        listUpgrade2.classList.remove("hidden");
-    });
+    if (skins) {
+        skins.addEventListener("click", function() {
+            window.showUpgrades(2);
+        });
+    }
 
-    specials.addEventListener("click", function() {
-        hideAllModals();
-        listUpgrade3.classList.remove("hidden");
-    });
+    if (specials) {
+        specials.addEventListener("click", function() {
+            window.showUpgrades(3);
+        });
+    }
 });
