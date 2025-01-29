@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
     <title>Clicker</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
     <link href="https://ai-public.creatie.ai/gen_page/tailwind-custom-v2.css" rel="stylesheet"/>
@@ -11,12 +11,13 @@
     <script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#000000" data-border-radius="small"></script>  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.3.3/echarts.min.js"></script>
     <style>
-        body{
-            overflow-x: hidden;
+        *{
             user-select: none;
             resize: none;
         }
-
+        body{
+            overflow-x: hidden;
+        }
         .ellipsis {
             overflow: hidden;
             white-space: nowrap;
@@ -34,7 +35,7 @@
             </div>    
         </div>
         <div class="flex items-center justify-between px-4 py-4">
-            <button class="text-xl" onclick="showLeaderboard()">
+            <button class="text-xl" id="leaderboard-button">
                 <i class="fas fa-trophy text-gray-400"></i>
             </button>  
             <div class="flex items-center justify-between space-x-4">
@@ -49,7 +50,7 @@
                     </div>                
                 </div>
             </div>
-            <button class="text-xl" onclick="showSettings()">
+            <button class="text-xl" id="settings-button">
                 <i class="fas fa-cog text-gray-400"></i>
             </button>
         </div>
@@ -94,28 +95,34 @@
     <nav class="fixed bottom-0 w-full bg-black/80 backdrop-blur-md border-t border-gray-800 z-60">
         <div class="grid grid-cols-4 gap-1 py-3">
             <a class="flex flex-col items-center gap-1 cursor-pointer" id="main-button">
-                <i class="fas fa-coins text-yellow-500"></i>
+                <i id="mainIcon" class="fas fa-coins text-yellow-500"></i>
                 <span class="text-xs">Clicker</span>
             </a>
             <a class="flex flex-col items-center gap-1 cursor-pointer" id="shop-button">
-                <i class="fas fa-store text-gray-400"></i>
+                <i id="shopIcon" class="fas fa-store text-gray-500"></i>
                 <span class="text-xs">Shop</span>
             </a>
             <a class="flex flex-col items-center gap-1 cursor-pointer" id="friend-button">
-                <i class="fas fa-users text-gray-400"></i>
+                <i id="friendIcon" class="fas fa-users text-gray-500"></i>
                 <span class="text-xs">Friends</span>
             </a>
             <a class="flex flex-col items-center gap-1 cursor-pointer" id="profile-button">
-                <i class="fas fa-user text-gray-400"></i>
+                <i id="profileIcon" class="fas fa-user text-gray-500"></i>
                 <span class="text-xs">Profile</span>
             </a>
         </div>
     </nav>
 
-    <script src="./JS/script.js"></script>
+    <script type="module">
+        import { showLeaderboard, showSettings } from './JS/script.js';
 
-    <script src="./JS/modal.js"></script>
-    <script src="./JS/load.js"></script>
-    <script src="./JS/shop.js"></script>
+        document.getElementById('leaderboard-button').addEventListener('click', showLeaderboard);
+        document.getElementById('settings-button').addEventListener('click', showSettings);
+    </script>
+    <script src="../JS/modal.js" type="module"></script>
+    <script src="../JS/load.js" type="module"></script>
+    <script src="../JS/shop.js" type="module">
+        
+    </script>
 </body>
 </html>
