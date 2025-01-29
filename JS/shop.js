@@ -1,5 +1,5 @@
 window.showUpgrades = function(buttonNumber) {
-    console.log("Button Number:", buttonNumber); // Log the button number
+    console.log("Button Number:", buttonNumber); 
     const listUpgrade1 = document.querySelectorAll('.list-upgrade1')[0];
     const listUpgrade2 = document.querySelectorAll('.list-upgrade2')[0];
     const listUpgrade3 = document.querySelectorAll('.list-upgrade3')[0];
