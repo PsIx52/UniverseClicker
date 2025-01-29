@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     shopButton.addEventListener("click", function() {
-        console.log('Shop button clicked'); // Лог для отладки
+        console.log('Shop button clicked'); 
         hideAllWindows(); // Скрыть все окна
         shopIcon.style.color = "yellow"; 
         shopWindow.classList.remove("hidden"); // Показать окно магазина
