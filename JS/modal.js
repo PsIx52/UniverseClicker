@@ -1,8 +1,14 @@
+export const shopButton = document.getElementById("shop-button");
+
 document.addEventListener("DOMContentLoaded", function() {
     const mainButton = document.getElementById("main-button");
-    const shopButton = document.getElementById("shop-button");
     const friendButton = document.getElementById("friend-button");
     const profileButton = document.getElementById("profile-button");
+
+    const mainIcon = document.getElementById("mainIcon");
+    const shopIcon = document.getElementById("shopIcon");
+    const friendIcon = document.getElementById("friendIcon");
+    const profileIcon = document.getElementById("profileIcon");
 
     const mainWindow = document.getElementById("main");
     const shopWindow = document.getElementById("shop-modal");
@@ -14,25 +20,35 @@ document.addEventListener("DOMContentLoaded", function() {
         shopWindow.classList.add("hidden");
         friendsWindow.classList.add("hidden");
         profileWindow.classList.add("hidden");
+
+        mainIcon.style.color = "gray"; 
+        shopIcon.style.color = "gray"; 
+        friendIcon.style.color = "gray"; 
+        profileIcon.style.color = "gray"; 
     }
 
     mainButton.addEventListener("click", function() {
         hideAllWindows();
+        mainIcon.style.color = "yellow"; 
         mainWindow.classList.remove("hidden");
     });
 
     shopButton.addEventListener("click", function() {
-        hideAllWindows();
-        shopWindow.classList.remove("hidden");
+        console.log('Shop button clicked'); // Лог для отладки
+        hideAllWindows(); // Скрыть все окна
+        shopIcon.style.color = "yellow"; 
+        shopWindow.classList.remove("hidden"); // Показать окно магазина
     });
 
     friendButton.addEventListener("click", function() {
         hideAllWindows();
+        friendIcon.style.color = "yellow"; 
         friendsWindow.classList.remove("hidden");
     });
 
     profileButton.addEventListener("click", function() {
         hideAllWindows();
+        profileIcon.style.color = "yellow"; 
         profileWindow.classList.remove("hidden");
     });
 });
