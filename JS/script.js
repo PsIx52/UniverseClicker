@@ -8,8 +8,6 @@ let clicksArray = [];
 let vip = 0;
 let progress = 0; // Initialize progress variable
 let energy = 100;
-let energyFill = 100;
-
 
 document.getElementById('click-button').addEventListener('click', () => {
     lastClick = Date.now(); // Update lastClick on user click
@@ -20,8 +18,6 @@ document.getElementById('click-button').addEventListener('click', () => {
         coins++;
         clicks++;
         document.getElementById('TotalCoins').textContent = coins;
-
-        
         document.addEventListener("DOMContentLoaded", () => {
             const coinsElement = document.getElementById('CoinsForToday');
             if (coinsElement) {
@@ -29,8 +25,6 @@ document.getElementById('click-button').addEventListener('click', () => {
             }
             console.log("Coins:", coins);
             console.log("CoinsForToday Element:", document.getElementById('CoinsForToday'));
-
-
         });
         
         progress = Math.min(progress + 1, 100); 
@@ -65,11 +59,11 @@ document.getElementById('click-button').addEventListener('click', () => {
 
 setInterval(() => {
     const now = Date.now();
-    if (now - lastClick > 300 && energy < 100) {
+    if (now - lastClick > 300 && energy > 1 && energy <= 100){
         document.getElementById('Energy').textContent = energy + "/100";
         document.querySelector('.w-56.h-3 > div').style.width = energy + '%'; 
         energy += 1;
-        document.getElementById('Energy').style.color = "gray";
+        document.getElementById('Energy').style.color = "white";
     }
 }, 500);
 
@@ -87,11 +81,12 @@ function showNotification(message) {
     }, 3000);
 };
 
-function showLeaderboard() {
+export function showLeaderboard() { // Export the function
+    console.log("showLeaderboard function called"); // Log when the function is called
     showNotification('Таблица лидеров скоро будет доступна!');
 };
 
-function showSettings() {
+export function showSettings() { // Export the function
+    console.log("showSettings function called"); // Log when the function is called
     showNotification('Настройки скоро будут доступны!');
 };
-
