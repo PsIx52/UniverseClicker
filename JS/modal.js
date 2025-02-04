@@ -29,26 +29,26 @@ document.addEventListener("DOMContentLoaded", function() {
 
     mainButton.addEventListener("click", function() {
         hideAllWindows();
-        mainIcon.style.color = "yellow"; 
+        mainIcon.style.color = "#e89b00"; 
         mainWindow.classList.remove("hidden");
     });
 
     shopButton.addEventListener("click", function() {
-        console.log('Shop button clicked'); 
+        console.log('Shop button clicked'); // Лог для отладки
         hideAllWindows(); // Скрыть все окна
-        shopIcon.style.color = "yellow"; 
+        shopIcon.style.color = "#e89b00"; 
         shopWindow.classList.remove("hidden"); // Показать окно магазина
     });
 
     friendButton.addEventListener("click", function() {
         hideAllWindows();
-        friendIcon.style.color = "yellow"; 
+        friendIcon.style.color = "#e89b00"; 
         friendsWindow.classList.remove("hidden");
     });
 
     profileButton.addEventListener("click", function() {
         hideAllWindows();
-        profileIcon.style.color = "yellow"; 
+        profileIcon.style.color = "#e89b00"; 
         profileWindow.classList.remove("hidden");
     });
 });
