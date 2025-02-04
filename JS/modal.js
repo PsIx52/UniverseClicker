@@ -34,10 +34,10 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     shopButton.addEventListener("click", function() {
-        console.log('Shop button clicked'); // Лог для отладки
-        hideAllWindows(); // Скрыть все окна
+        console.log('Shop button clicked'); 
+        hideAllWindows(); 
         shopIcon.style.color = "#e89b00"; 
-        shopWindow.classList.remove("hidden"); // Показать окно магазина
+        shopWindow.classList.remove("hidden"); 
     });
 
     friendButton.addEventListener("click", function() {
