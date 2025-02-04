@@ -64,15 +64,14 @@ window.showUpgrades = function(buttonNumber) {
             break;
     }
 
-    // Updated function to handle upgrade purchases with console logs
     function purchaseUpgrade(upgradeType, button) {
         const upgradeCost = parseInt(button.getAttribute('data-cost'), 10);
         if (window.coins >= upgradeCost) {
-            window.coins -= upgradeCost; // Deduct the cost from coins
+            window.coins -= upgradeCost; 
             document.getElementById('TotalCoins').textContent = window.coins; 
-            purchasedUpgrades[upgradeType] = true; // Store the purchased upgrade
+            purchasedUpgrades[upgradeType] = true; 
             button.classList.add('active'); 
-            button.textContent = "Success!"; // Change button text to "Success!"
+            button.textContent = "Success!";
         } else {
             console.warn("Not enough coins to purchase upgrade.");
         }
@@ -82,16 +81,15 @@ window.showUpgrades = function(buttonNumber) {
         }
     }
 
-    // Check for purchased upgrades when the shop is opened
+
     const buttons = document.querySelectorAll('.buy_btn');
     buttons.forEach(button => {
         const upgradeType = button.getAttribute('data-upgrade-type');
         if (purchasedUpgrades[upgradeType]) {
-            button.classList.add('active'); // Apply active class if already purchased
+            button.classList.add('active'); 
         }
     });
-
-    // Add click event listeners to all buttons
+    
     buttons.forEach(button => {
         button.addEventListener('click', () => {
             purchaseUpgrade(button.getAttribute('data-upgrade-type'), button);
