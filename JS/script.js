@@ -1,6 +1,4 @@
-console.log("script.js загружен");
-
-window.coins = 0; // Attach coins to the window object
+window.coins = 0;
 let level = 1;
 let clicks = 0;
 let lastClick = Date.now();
