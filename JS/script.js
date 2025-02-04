@@ -1,6 +1,6 @@
 console.log("script.js загружен");
 
-let coins = 0;
+window.coins = 0; // Attach coins to the window object
 let level = 1;
 let clicks = 0;
 let lastClick = Date.now();
@@ -10,7 +10,7 @@ let progress = 0; // Initialize progress variable
 let energy = 100;
 
 document.getElementById('click-button').addEventListener('click', () => {
-    lastClick = Date.now(); 
+    lastClick = Date.now(); // Update lastClick on user click
     if (energy > 1) {
         energy -= 2;
         document.getElementById('Energy').textContent = energy + "/100";
@@ -49,8 +49,7 @@ document.getElementById('click-button').addEventListener('click', () => {
         
         // Change notification background to red
         const notification = document.getElementById('notification');
-        notification.classList.remove('bg-green-500'); // Remove green background
-        notification.classList.add('bg-red-500'); // Add red background
+        notification.style.backgroundColor = 'red';
         
         // Show notification after changing the background color
         showNotification('Энергия закончилась!'); // Notify user about energy depletion
@@ -59,11 +58,16 @@ document.getElementById('click-button').addEventListener('click', () => {
 
 setInterval(() => {
     const now = Date.now();
-    if (now - lastClick > 300 && energy > 1 && energy <= 100){
-        document.getElementById('Energy').textContent = energy + "/100";
-        document.querySelector('.w-56.h-3 > div').style.width = energy + '%'; 
-        energy += 1;
-        document.getElementById('Energy').style.color = "white";
+    if (now - lastClick > 300 && (energy > 0 || energy === 0)) {
+        if (energy < 100) {
+            document.getElementById('Energy').textContent = energy + "/100";
+            energy += 1;
+            document.querySelector('.w-56.h-3 > div').style.width = energy + '%';
+            document.getElementById('Energy').style.color = "white";
+        }
+        if (energy == 100) {
+            document.getElementById('Energy').textContent = "100/100";
+        }
     }
 }, 500);
 
@@ -80,6 +84,9 @@ function showNotification(message) {
         notification.classList.add('hidden');
     }, 3000);
 };
+
+document.getElementById('leaderboard-button').addEventListener('click', showLeaderboard);
+document.getElementById('settings-button').addEventListener('click', showSettings);
 
 export function showLeaderboard() { // Export the function
     console.log("showLeaderboard function called"); // Log when the function is called
