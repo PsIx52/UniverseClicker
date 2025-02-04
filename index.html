@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-    <title>Clicker</title>
+    <title>UniverseClicker</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
     <link href="https://ai-public.creatie.ai/gen_page/tailwind-custom-v2.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
@@ -18,25 +18,22 @@
         body{
             overflow-x: hidden;
         }
-        .ellipsis {
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
+
     </style>
 </head>
 <body class="bg-black h-screen w-screen mx-auto text-white">
  
     <!-- HEADER-->
     <header class="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-gray-800">
+        <!-- notification-->
         <div id="notification" class="fixed top-0 left-0 right-0 z-50 hidden">        
-            <div class="bg-green-500 text-white text-center py-2 px-4">
+            <div class="text-white text-center py-2 px-4" style="background-color: #3ab130;">
                 <span id="notification-text"></span>
             </div>    
         </div>
         <div class="flex items-center justify-between px-4 py-4">
             <button class="text-xl" id="leaderboard-button">
-                <i class="fas fa-trophy text-gray-400"></i>
+                <i class="fas fa-trophy text-yellow-600"></i>
             </button>  
             <div class="flex items-center justify-between space-x-4">
                 <div class="flex items-center">
@@ -51,13 +48,13 @@
                 </div>
             </div>
             <button class="text-xl" id="settings-button">
-                <i class="fas fa-cog text-gray-400"></i>
+                <i class="fas fa-cog text-gray-700"></i>
             </button>
         </div>
     </header>
 
     <!-- MAIN-->
-    <main class="pt-20 pb-20 flex flex-col items-center justify-between h-full" id="main">
+    <main class="pt-20 flex flex-col items-center justify-between h-full" id="main">
         <div class="flex flex-col items-center gap-6 mt-8">
             <div class="relative flex flex-col items-center gap-2">
                 <span class="text-sm text-gray-400">Total Coins</span>
@@ -79,7 +76,7 @@
     </main>
 
     <!-- SHOP CONTENT -->
-    <div id="shop-modal" class="hidden w-[375px] min-h-[762px] mx-auto pt-20 pb-20 items-center justify-between">
+    <div id="shop-modal" class="hidden w-[375px] min-h-[762px] mx-auto pt-20 items-center justify-between">
     </div>
     <!-- END SHOP CONTENT -->
 
@@ -88,14 +85,14 @@
     </div>
     
     <!-- PROFILE-->
-    <div class="hidden text-white w-[375px] min-h-[762px] mx-auto relative pt-20 pb-20" id="profile-window">
+    <div class="hidden text-white w-[375px] min-h-[762px] mx-auto relative pt-20" id="profile-window">
     </div>
 
     <!-- FOOTER-->
     <nav class="fixed bottom-0 w-full bg-black/80 backdrop-blur-md border-t border-gray-800 z-60">
         <div class="grid grid-cols-4 gap-1 py-3">
             <a class="flex flex-col items-center gap-1 cursor-pointer" id="main-button">
-                <i id="mainIcon" class="fas fa-coins text-yellow-500"></i>
+                <i id="mainIcon" class="fas fa-coins"  style="color: #e89b00;"></i>
                 <span class="text-xs">Clicker</span>
             </a>
             <a class="flex flex-col items-center gap-1 cursor-pointer" id="shop-button">
@@ -113,16 +110,15 @@
         </div>
     </nav>
 
-    <script type="module">
+    <script src="../JS/script.js" type="module">
         import { showLeaderboard, showSettings } from './JS/script.js';
 
         document.getElementById('leaderboard-button').addEventListener('click', showLeaderboard);
         document.getElementById('settings-button').addEventListener('click', showSettings);
     </script>
-    <script src="JS/modal.js" type="module"></script>
-    <script src="JS/load.js" type="module"></script>
-    <script src="JS/shop.js" type="module">
-        
+    <script src="../JS/modal.js" type="module"></script>
+    <script src="../JS/load.js" type="module"></script>
+    <script src="../JS/shop.js" type="module"> 
     </script>
 </body>
 </html>
