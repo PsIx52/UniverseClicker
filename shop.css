@@ -1,0 +1,77 @@
+.list-upgrade1, .list-upgrade2, .list-upgrade3 {
+    overflow: hidden;
+}
+
+.ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.menu_btn {
+    margin: 0px 0px 0px 8px;
+    padding: 8px 24px;
+    background-color: #111827;
+    border-radius: 20px;
+    font-size: 11;
+    font-weight: 500;
+    color: white;
+}
+
+.menu_btn:hover {
+    background-color: #1b263f;
+}
+
+.menu_btn.active {
+    background-color: #1a4d7a;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transform: scale(1.05);
+}
+
+.list-upgrade {
+    z-index: 999;
+}
+
+.card {
+    background-color: #111827;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensure space between content and button */
+}
+
+.imgInCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; /* Center the image */
+}
+
+.buy_btn {
+    width: 100%;
+    padding: 8px 24px;
+    margin-bottom: 5px;
+    background-color: black;
+    border-radius: 8px;
+    font-size: 11;
+    font-weight: 500;
+    color: white;
+}
+
+.buy_btn.success {
+    background-color: #4CAF50; /* Зеленый цвет */
+    color: white; /* Белый текст */
+    border: 1px solid #388E3C; /* Темно-зеленая рамка */
+    transition: transform 0.2s, background-color 0.2s, text 0.2s; /* Specify transition for transform and background-color */
+    transform: scale(0.95); /* Apply scale transformation */
+}
+
+.buy_btn.error {
+    background-color: #af4f4c; /* Зеленый цвет */
+    color: white; /* Белый текст */
+    border: 1px solid #8e3838; /* Темно-зеленая рамка */
+    transition: transform 0.2s, background-color 0.2s, text 0.2s; /* Specify transition for transform and background-color */
+    transform: scale(0.95); /* Apply scale transformation */
+}
+

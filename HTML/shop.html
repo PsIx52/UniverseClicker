@@ -1,0 +1,180 @@
+<head>
+    <link rel="stylesheet" href="../shop.css">
+</head>
+<body class="bg-gray-900 text-white w-[375px] min-h-[762px]">
+
+    <main class="pb-20">
+
+            <div id="shop-modal" class="flex pb-20 w-[375px] min-h-[762px]">
+                <div id="shop-page" class="bg-black rounded-lg space-y-6"> <!-- Added margin -->
+                    <div class="p-4 w-[375px] min-h-[762px]"> <!-- Changed p-4 to p-0 -->
+                        <div class="relative h-40 mb-6 rounded-lg overflow-hidden">
+                            <img class="imgInCard" src="pictures/bonus.avif" alt="Special Offer" class="w-full h-full object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80">
+                                <h2 class="text-xl font-bold">Специальное предложение</h2>
+                                <p class="text-11 text-gray-300">Удвоенные бонусы весь день!</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-4 mb-6 overflow-x-auto overflow-hidden -webkit-scrollbar-thumb">
+                            <button id="busters" class="menu_btn" onclick="showUpgrades(1)">Бустеры</button>
+                            <button id="skins" class="menu_btn" onclick="showUpgrades(2)">Скины</button>
+                            <button id="specials" class="menu_btn" onclick="showUpgrades(3)">Специальные</button>
+                        </div>
+                        <div id="list-upgrade1" class="grid grid-cols-2 gap-4 list-upgrade1">
+                            <div class="card">
+                                <img class="imgInCard" src="../pictures/UpClick.jpg" alt="2x Множитель" class="w-36 h-36 object-cover rounded-lg mb-3 items-center " style="width: 125px; height: 125px;">
+                                <h3 class="text-11 font-medium mb-2 ellipsis">Улучшение клика</h3>
+                                <p class="text-11 text-white-300 mb-2" id="upgradeElement" >+1 монета/клик</p>
+                                
+                                <button id="buy_btn" class="buy_btn" data-cost="10" data-upgrade-type="clickUpgrade">
+                                 <i id="cost" class="fas fa-coins text-yellow-500 mr-2"></i>
+                                    10
+                                </button>
+                            </div>
+                            <div class="card">
+                                <img class="imgInCard" src="../pictures/kritClick.jpg" alt="2x Множитель" style="width: 125px; height: 125px;">
+                                <h3 class="text-11 font-medium mb-2 ellipsis">Критический клик</h3>
+                                <p class="text-11 text-white-300 mb-2" id="upgradeElement">10% клик 2x</p>
+                                
+                                <button id="buy_btn" class="buy_btn" data-cost="30" data-upgrade-type="criticalClickUpgrade">
+                                    <i id="cost" class="fas fa-coins text-yellow-500 mr-2"></i>
+                                    30
+                                </button>
+                            </div>
+                            <div class="card">
+                                <img class="imgInCard" src="../pictures/AUTO.jpg" alt="2x Множитель" style="width: 125px; height: 125px;">
+                                <h3 class="text-11 font-medium mb-2 ellipsis">Автоматический сбор</h3>
+                                <p class="text-11 text-white-300 mb-2" id="upgradeElement">Разблокировка офлайн-дохода</p>
+                                
+                                <button id="buy_btn" class="buy_btn" data-cost="500" data-upgrade-type="autoCollectUpgrade">
+                                    <i id="cost" class="fas fa-coins text-yellow-500 mr-2"></i>
+                                    500
+                                </button>
+                            </div>
+                            <div class="card">
+                                <img class="imgInCard" src="../pictures/Offline.jpg" alt="2x Множитель" style="width: 125px; height: 125px;">
+                                <h3 class="text-11 font-medium mb-2 ellipsis">Увеличение офлайн-дохода</h3>
+                                <p class="text-11 text-white-300 mb-2" id="upgradeElement">+100/час</p>
+                                
+                                <button id="buy_btn" class="buy_btn" data-cost="100" data-upgrade-type="offlineIncomeUpgrade">
+                                    <i id="cost" class="fas fa-coins text-yellow-500 mr-2"></i>
+                                    100
+                                </button>
+                            </div>
+                            <div class="card">
+                                <img class="imgInCard" src="../pictures/EnergyCap.jpg" alt="2x Множитель" style="width: 125px; height: 125px;">
+                                <h3 class="text-11 font-medium mb-2 ellipsis">Энергетический генератор</h3>
+                                <p class="text-11 text-white-300 mb-2" id="upgradeElement">+100</p>
+                                
+                                <button id="buy_btn" class="buy_btn" data-cost="50" data-upgrade-type="energyGeneratorUpgrade">
+                                    <i id="cost" class="fas fa-coins text-yellow-500 mr-2"></i>
+                                    50
+                                </button>
+                            </div>
+
+                            <div class="card">
+                                <img class="imgInCard" src="../pictures/speedEnergy.jpg" alt="2x Множитель" style="width: 125px; height: 125px;">
+                                <h3 class="text-11 font-medium mb-2 ellipsis">Быстрое восстановление</h3>
+                                <p class="text-11 text-white-300 mb-2" id="upgradeElement">+2/сек</p>
+                                
+                                <button id="buy_btn" class="buy_btn" data-cost="100" data-upgrade-type="fastRecoveryUpgrade">
+                                    <i id="cost" class="fas fa-coins text-yellow-500 mr-2"></i>
+                                    100
+                                </button>
+                            </div>
+                        </div>
+                
+                        <div id="list-upgrade2" class="hidden grid grid-cols-2 gap-4 mx-auto list-upgrade2" >
+                            <div class="card">
+                                <img class="imgInCard" src="../pictures/Lava.jpg" alt="2x Множитель" style="width: 125px; height: 125px;">
+                                <h3 class="text-11 font-medium mb-2 ellipsis">Огненный скин</h3>
+                                <button id="buy_btn" class="buy_btn" data-cost="250" data-upgrade-type="fireSkinUpgrade">
+                                    <i id="cost" class="fas fa-coins text-yellow-500 mr-2"></i>
+                                    250
+                                </button>
+                            </div>
+                            <div class="card">
+                                <img class="imgInCard" src="../pictures/Ice.jpg" alt="2x Множитель" style="width: 125px; height: 125px;">
+                                <h3 class="text-11 font-medium mb-2 ellipsis">Ледяной скин</h3>
+                                <button id="buy_btn" class="buy_btn" data-cost="250" data-upgrade-type="iceSkinUpgrade">
+                                   <i id="cost" class="fas fa-coins text-yellow-500 mr-2"></i>
+                                    250
+                                </button>
+                            </div>
+                            <div class="card">
+                                <img class="imgInCard" src="../pictures/EnergySkin.jpg" alt="2x Множитель" style="width: 125px; height: 125px;">
+                                <h3 class="text-11 font-medium mb-2 ellipsis">Энергетический скин</h3>
+                                <button id="buy_btn" class="buy_btn" data-cost="250" data-upgrade-type="energySkinUpgrade">
+                                    <i id="cost" class="fas fa-coins text-yellow-500 mr-2"></i>
+                                    250
+                                </button>
+                            </div>
+                            <div class="card">
+                                <img class="imgInCard" src="../pictures/forest.avif" alt="2x Множитель" style="width: 125px; height: 125px;">
+                                <h3 class="text-11 font-medium mb-2 ellipsis">Лесной скин</h3>
+                                <button id="buy_btn" class="buy_btn" data-cost="250" data-upgrade-type="forestSkinUpgrade">
+                                    <i id="cost" class="fas fa-coins text-yellow-500 mr-2"></i>
+                                    250
+                                </button>
+                            </div>
+                            <div class="card">
+                                <img class="imgInCard" src="../pictures/gold_cursor.jpg" alt="2x Множитель" style="width: 125px; height: 125px;">
+                                <h3 class="text-11 font-medium mb-2 ellipsis">Золотой скин</h3>
+                                <button id="buy_btn" class="buy_btn" data-cost="250" data-upgrade-type="goldSkinUpgrade">
+                                    <i id="cost" class="fas fa-coins text-yellow-500 mr-2"></i>
+                                    250
+                                </button>
+                            </div>
+
+                            <div class="card">
+                                <img class="imgInCard" src="../pictures/speedEnergy.jpg" alt="2x Множитель" style="width: 125px; height: 125px;">
+                                <h3 class="text-11 font-medium mb-2 ellipsis">Быстрое восстановление</h3>
+                                <button id="buy_btn" class="buy_btn" data-cost="100" data-upgrade-type="fastRecoveryUpgrade">
+                                    <i id="cost" class="fas fa-coins text-yellow-500 mr-2"></i>
+                                    100
+                                </button>
+                            </div>
+                        </div>
+                
+                        <div id="list-upgrade3" class="hidden grid grid-cols-2 gap-4 list-upgrade3">
+                            <div class="card">
+                                <img class="imgInCard" src="pictures/2x.png" alt="2x Множитель" style="width: 125px; height: 125px;">
+                                <h3 class="text-11 font-medium mb-2 ellipsis">2x Множитель</h3>
+                                <button id="buy_btn" class="buy_btn" data-cost="100" data-upgrade-type="doubleMultiplierUpgrade">
+                                    <i id="cost" class="fas fa-coins text-yellow-500 mr-2"></i>
+                                    100
+                                </button>
+                            </div>
+                            <div class="card">
+                                <img class="imgInCard" src="pictures/auto_click.png" alt="Авто-клик" style="width: 125px; height: 125px;">
+                                <h3 class="text-11 font-medium mb-2 ellipsis">Авто-клик</h3>
+                                <button id="buy_btn" class="buy_btn" data-cost="250" data-upgrade-type="autoClickUpgrade">
+                                    <i id="cost" class="fas fa-coins text-yellow-500 mr-2"></i>
+                                    250
+                                </button>
+                            </div>
+                            <div class="card">
+                                <img class="imgInCard" src="pictures/gold_cursor.webp" alt="Золотой курсор" style="width: 125px; height: 125px;">
+                                <h3 class="text-11 font-medium mb-2 ellipsis">Золотой курсор</h3>
+                                <button id="buy_btn" class="buy_btn" data-cost="500" data-upgrade-type="goldCursorUpgrade">
+                                    <i id="cost" class="fas fa-coins text-yellow-500 mr-2"></i>
+                                    500
+                                </button>
+                            </div>
+                            <div class="card">
+                                <img class="imgInCard" src="pictures/rainbow.jpeg" alt="Радужный эффект" style="width: 125px; height: 125px;">
+                                <h3 class="text-11 font-medium mb-2 ellipsis">Запрещенка</h3>
+                                <button id="buy_btn" class="buy_btn" data-cost="750" data-upgrade-type="rainbowEffectUpgrade">
+                                    <i id="cost" class="fas fa-coins text-yellow-500 mr-2"></i>
+                                    750
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </main>
+    <script src="../JS/shop.js"></script>
+    <script src="../JS/modal.js"></script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Clicker</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://ai-public.creatie.ai/gen_page/tailwind-custom-v2.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
+    <script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#000000" data-border-radius="small"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.3.3/echarts.min.js"></script>
+    <style>
+        body{
+            overflow-x: hidden;
+            user-select: none;
+        }
+
+        .ellipsis {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body class="bg-black h-screen w-screen mx-auto text-white">
+ 
+    <!-- HEADER-->
+    <header class="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-gray-800">
+        <div id="notification" class="fixed top-0 left-0 right-0 z-50 hidden">        
+            <div class="bg-green-500 text-white text-center py-2 px-4">
+                <span id="notification-text"></span>
+            </div>    
+        </div>
+        <div class="flex items-center justify-between px-4 py-4">
+            <button class="text-xl" onclick="showLeaderboard()">
+                <i class="fas fa-trophy text-gray-400"></i>
+            </button>  
+            <div class="flex items-center justify-between space-x-4">
+                <div class="flex items-center">
+                    <i class="fas fa-gem text-purple-400 mx-2"></i>
+                    <span id="vip" class="text-lg font-bold">0</span>
+                </div>
+                <div class="flex items-center">                    
+                    <span id="level" class="text-lg mx-2">Level 1</span>
+                    <div class="w-32 h-2 bg-[#111827] rounded-full">
+                        <div class="w-[0%] h-full bg-white rounded-full"></div>
+                    </div>                
+                </div>
+            </div>
+            <button class="text-xl" onclick="showSettings()">
+                <i class="fas fa-cog text-gray-400"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN-->
+    <main class="pt-20 pb-20 flex flex-col items-center justify-between h-full" id="main">
+        <div class="flex flex-col items-center gap-6 mt-8">
+            <div class="relative flex flex-col items-center gap-2">
+                <span class="text-sm text-gray-400">Total Coins</span>
+                <i class="fas fa-coins text-4xl text-yellow-500 animate-pulse"></i>
+                <span class="text-2xl font-bold" id="TotalCoins">0</span>
+            </div>
+        
+            <button class="w-56 h-56 rounded-full border-4 border-gray-700 flex items-center justify-center transition-transform active:scale-95 hover:border-blue-400 bg-gradient-to-b from-blue-400 to-blue-600 shadow-lg shadow-blue-500/50 hover:shadow-blue-500/75" id="click-button">
+                <div class="flex flex-col items-center justify-center z-5">
+                    <i class="fas fa-hand-pointer text-7xl text-white mb-2 animate-bounce"></i>
+                    <div class="text-2xl font-bold text-white">CLICK!</div>
+                </div>
+            </button>
+            <div class="w-56 h-3 bg-[#111827] rounded-full overflow-hidden">
+                <div class="w-[100%] h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+            </div>
+            <div class="mt-2 text-sm text-gray-400" id="Energy">100/100</div>
+        </div>
+    </main>
+
+    <!-- SHOP CONTENT -->
+    <div id="shop-modal" class="hidden w-[375px] min-h-[762px] mx-auto pt-20 pb-20 items-center justify-between">
+        <div class="bg-black rounded-lg p-4">
+            <div class="p-4">
+                <div class="relative h-40 mb-6 rounded-lg overflow-hidden">
+                    <img src="../pictures/bonus.avif" alt="Special Offer" class="w-full h-full object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80">
+                        <h2 class="text-xl font-bold">Специальное предложение</h2>
+                        <p class="text-sm text-gray-300">Удвоенные бонусы весь день!</p>
+                    </div>
+                </div>
+                <div class="flex space-x-4 mb-6 overflow-x-auto">
+                    <button class="px-6 py-2 bg-[#111827] rounded-full text-sm font-medium text-white whitespace-nowrap">Бустеры</button>
+                    <button class="px-6 py-2 bg-[#111827] rounded-full text-sm font-medium text-white whitespace-nowrap">Скины</button>
+                    <button class="px-6 py-2 bg-[#111827] rounded-full text-sm font-medium text-white whitespace-nowrap">Специальные</button>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-[#111827] rounded-lg p-4">
+                        <img src="../pictures/2x.png" alt="2x Множитель" class="w-36 h-36 object-cover rounded-lg mb-3">
+                        <h3 class="text-sm font-medium mb-2 whitespace-nowrap ellipsis">2x Множитель</h3>
+                        <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-sm font-medium flex items-center justify-center">
+                            <i class="fas fa-gem text-purple-400 mr-2"></i>
+                            100
+                        </button>
+                    </div>
+                    <div class="bg-[#111827] rounded-lg p-4">
+                        <img src="../pictures/auto_click.png" alt="Авто-клик" class="w-36 h-36 object-cover rounded-lg mb-3">
+                        <h3 class="text-sm font-medium mb-2 whitespace-nowrap ellipsis">Авто-клик</h3>
+                        <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-sm font-medium flex items-center justify-center">
+                            <i class="fas fa-gem text-purple-400 mr-2"></i>
+                            250
+                        </button>
+                    </div>
+                    <div class="bg-[#111827] rounded-lg p-4">
+                        <img src="../pictures/gold_cursor.webp" alt="Золотой курсор" class="w-36 h-36 object-cover rounded-lg mb-3">
+                        <h3 class="text-sm font-medium mb-2 whitespace-nowrap ellipsis">Золотой курсор</h3>
+                        <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-sm font-medium flex items-center justify-center">
+                            <i class="fas fa-gem text-purple-400 mr-2"></i>
+                            500
+                        </button>
+                    </div>
+                    <div class="bg-[#111827] rounded-lg p-4">
+                        <img src="../pictures/rainbow.jpeg" alt="Радужный эффект" class="w-36 h-36 object-cover rounded-lg mb-3">
+                        <h3 class="text-sm font-medium mb-2 whitespace-nowrap ellipsis">Радужный эффект аываы</h3>
+                        <button class="w-full !rounded-button bg-custom text-white py-2 px-4 text-sm font-medium flex items-center justify-center">
+                            <i class="fas fa-gem text-purple-400 mr-2"></i>
+                            750
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END SHOP CONTENT -->
+
+    <!-- END FRIEND CONTENT -->
+    <div class="hidden w-[375px] min-h-[762px] mx-auto pt-20 pb-20" id="modal-ref">
+        <header class="px-4 py-6">
+          <h1 class="text-2xl font-semibold text-white">Реферальная программа</h1>
+        </header>
+      
+        <div class="px-4 mb-6">
+          <p class="text-gray-400 text-sm leading-relaxed">      Приглашайте друзей и получайте бонусы за каждого нового пользователя. Чем больше приглашенных, тем выше ваш уровень и больше вознаграждение.
+          </p>  </div>
+      
+        <div class="px-4 mb-6">
+          <div class="bg-gray-900 rounded-lg p-4">
+            <p class="text-sm text-gray-400 mb-2">Ваша реферальная ссылка</p>      <div class="flex items-center gap-2">
+              <input type="text" value="REF-MARIA2024" readonly class="flex-1 bg-black border-none text-white px-3 py-2 rounded text-sm" />        <button class="bg-custom text-white px-4 py-2 !rounded-button text-sm">
+                <i class="far fa-copy"></i>
+              </button>      </div>
+          </div>
+        </div>
+      
+        <div class="grid grid-cols-2 gap-4 px-4 mb-6">
+          <div class="bg-gray-900 rounded-lg p-4">
+            <p class="text-sm text-gray-400">Приглашено</p>
+            <p class="text-xl font-semibold mt-1">12</p>
+          </div>
+          <div class="bg-gray-900 rounded-lg p-4">      <p class="text-sm text-gray-400">Заработано</p>
+            <p class="text-xl font-semibold mt-1">2400₽</p>
+          </div>  </div>
+      
+        <div class="px-4 mb-6">
+          <p class="text-sm text-gray-400 mb-2">Прогресс до следующего уровня</p>    <div class="h-2 bg-gray-900 rounded-full overflow-hidden">
+            <div class="h-full bg-custom" style="width: 65%"></div>
+          </div>    <div class="flex justify-between mt-2">
+            <span class="text-xs text-gray-400">Уровень 2</span>
+            <span class="text-xs text-gray-400">8/12</span>
+          </div>
+        </div>
+      
+        <div class="px-4 mb-6">
+          <div class="grid grid-cols-4 gap-4">
+            <button class="bg-gray-900 p-3 rounded-lg flex flex-col items-center !rounded-button">        <i class="fab fa-telegram text-lg mb-1"></i>
+              <span class="text-xs">Telegram</span>
+            </button>
+            <button class="bg-gray-900 p-3 rounded-lg flex flex-col items-center !rounded-button">        <i class="fab fa-whatsapp text-lg mb-1"></i>
+              <span class="text-xs">WhatsApp</span>
+            </button>
+            <button class="bg-gray-900 p-3 rounded-lg flex flex-col items-center !rounded-button">        <i class="fab fa-vk text-lg mb-1"></i>
+              <span class="text-xs">VK</span>
+            </button>
+            <button class="bg-gray-900 p-3 rounded-lg flex flex-col items-center !rounded-button">        <i class="fas fa-share-alt text-lg mb-1"></i>
+              <span class="text-xs">Другое</span>
+            </button>
+          </div>  </div>
+      
+        <div class="px-4">
+          <h2 class="text-lg font-semibold mb-4">История операций</h2>
+          <div class="space-y-4">      <div class="bg-gray-900 rounded-lg p-4">
+              <div class="flex justify-between items-start">
+                <div>
+                  <p class="font-medium">Анна Смирнова</p>
+                  <p class="text-sm text-gray-400">Регистрация по реферальной ссылке</p>          </div>
+                <div class="text-right">
+                  <p class="font-medium text-green-500">+200₽</p>
+                  <p class="text-xs text-gray-400">24.02.2024</p>
+                </div>
+              </div>
+            </div>
+            <div class="bg-gray-900 rounded-lg p-4">
+              <div class="flex justify-between items-start">          <div>
+                  <p class="font-medium">Игорь Петров</p>
+                  <p class="text-sm text-gray-400">Регистрация по реферальной ссылке</p>          </div>
+                <div class="text-right">
+                  <p class="font-medium text-green-500">+200₽</p>
+                  <p class="text-xs text-gray-400">23.02.2024</p>
+                </div>
+              </div>
+            </div>
+            <div class="bg-gray-900 rounded-lg p-4">
+              <div class="flex justify-between items-start">          <div>
+                  <p class="font-medium">Екатерина Иванова</p>
+                  <p class="text-sm text-gray-400">Регистрация по реферальной ссылке</p>
+                </div>
+                <div class="text-right">
+                  <p class="font-medium text-green-500">+200₽</p>
+                  <p class="text-xs text-gray-400">22.02.2024</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    <!-- PROFILE-->
+    <div class="hidden text-white w-[375px] min-h-[762px] mx-auto relative pt-20 pb-20" id="profile-window">
+        <main class="pb-20">
+            <section class="p-4 space-y-6">
+                <div class="flex items-center space-x-4">
+                    <div class="w-20 h-20 rounded-full bg-zinc-900 overflow-hidden">
+                        <img src="../pictures/ava.jpg"/>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">Алексей Волков</h1>
+                        <p class="text-gray-400">Уровень 42</p>
+                    </div>
+                </div>
+
+                 <div class="bg-[#111827] rounded-lg p-4">
+                    <h2 class="text-lg font-semibold mb-4">Достижения</h2>
+                    <div class="grid grid-cols-4 gap-4">
+                        <div class="flex flex-col items-center">
+                            <div class="w-12 h-12 bg-zinc-800 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-trophy text-yellow-500"></i>
+                            </div>
+                            <div class="mt-2 text-xs text-center">
+                                <p>1000 кликов</p>
+                                <div class="w-full bg-gray-700 rounded-full h-1 mt-1">
+                                    <div class="bg-custom h-1 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-12 h-12 bg-zinc-800 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-star text-amber-300"></i>
+                            </div>
+                            <div class="mt-2 text-xs text-center">
+                                <p>5000 монет</p>
+                                <div class="w-full bg-gray-700 rounded-full h-1 mt-1">
+                                    <div class="bg-custom h-1 rounded-full" style="width: 45%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-12 h-12 bg-zinc-800 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-bolt text-blue-400"></i>
+                            </div>
+                            <div class="mt-2 text-xs text-center">
+                                <p>7 дней</p>
+                                <div class="w-full bg-gray-700 rounded-full h-1 mt-1">
+                                    <div class="bg-custom h-1 rounded-full" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-12 h-12 bg-zinc-800 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-gem text-purple-400"></i>
+                            </div>
+                            <div class="mt-2 text-xs text-center">
+                                <p>Премиум</p>
+                                <div class="w-full bg-gray-700 rounded-full h-1 mt-1">
+                                    <div class="bg-custom h-1 rounded-full" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-[#111827] rounded-lg p-4">
+                    <h2 class="text-lg font-semibold mb-4">Игровой прогресс</h2>
+                    <div class="space-y-4 ">
+                        <div class="flex justify-between items-center">
+                            <span>Общее время в игре</span>
+                            <span class="text-white">24ч 35м</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>Кликов за сегодня</span>
+                            <span class="text-white">1,234</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>Улучшений куплено</span>
+                            <span class="text-white">8/12</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-[#111827] rounded-lg p-4">
+                    <h2 class="text-lg font-semibold mb-4">Статистика активности</h2>
+                    <div id="activityChart" class="w-full h-48"></div>
+                </div>
+               
+            </section>
+        </main>
+    </div>
+
+    <!-- FOOTER-->
+    <nav class="fixed bottom-0 w-full bg-black/80 backdrop-blur-md border-t border-gray-800 z-60">
+        <div class="grid grid-cols-4 gap-1 py-3">
+            <a class="flex flex-col items-center gap-1 cursor-pointer" id="main-button">
+                <i class="fas fa-coins text-yellow-500"></i>
+                <span class="text-xs">Clicker</span>
+            </a>
+            <a class="flex flex-col items-center gap-1 cursor-pointer" id="shop-button">
+                <i class="fas fa-store text-gray-400"></i>
+                <span class="text-xs">Shop</span>
+            </a>
+            <a class="flex flex-col items-center gap-1" id="friend-button">
+                <i class="fas fa-users text-gray-400"></i>
+                <span class="text-xs">Friends</span>
+            </a>
+            <a class="flex flex-col items-center gap-1" id="profile-button">
+                <i class="fas fa-user text-gray-400"></i>
+                <span class="text-xs">Profile</span>
+            </a>
+        </div>
+    </nav>
+
+    <script src="../JS/script.js"></script>
+    <script src="../JS/static.js"></script>
+    <script src="../JS/modal.js"></script>
+</body>
+</html>
