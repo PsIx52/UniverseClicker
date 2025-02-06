@@ -1,3 +1,5 @@
+console.log("modal.js загружен");
+
 export const shopButton = document.getElementById("shop-button");
 
 document.addEventListener("DOMContentLoaded", function() {
