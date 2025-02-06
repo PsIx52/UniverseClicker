@@ -1,4 +1,9 @@
+console.log("shop.js загружен");
+
+const purchasedUpgrades = {}; // Move this outside to retain state
+
 export function setActiveButton(buttonNumber) {
+    console.log(`setActiveButton called with buttonNumber: ${buttonNumber}`); // Log to confirm activation
     const busters = document.getElementById('busters');
     const skins = document.getElementById('skins');
     const specials = document.getElementById('specials');
@@ -44,7 +49,6 @@ window.showUpgrades = function(buttonNumber) {
             modal.classList.remove("hidden");
         }
     }
-    const purchasedUpgrades = {};
     hideAllModals();
 
     switch (buttonNumber) {
@@ -64,78 +68,65 @@ window.showUpgrades = function(buttonNumber) {
             break;
     }
 
-    function purchaseUpgrade(upgradeType, button) {
-        const upgradeCost = parseInt(button.getAttribute('data-cost'));
-
-        const buttons = document.querySelectorAll('.buy_btn');
-        buttons.forEach(button => {
-            const buttonId = button.id;
-            const originalHtml = button.innerHTML;
-            localStorage.setItem(`originalHtml_${buttonId}`, originalHtml); // сохраняем исходный HTML в localStorage
-        });
-
-
-        window.addEventListener('load', function() {
-            const buttons = document.querySelectorAll('.buy_btn');
-            buttons.forEach(button => {
-                const buttonId = button.id;
-                const originalHtml = button.innerHTML;
-                localStorage.setItem(`originalHtml_${buttonId}`, originalHtml); // сохраняем исходный HTML в localStorage
-            });
-        });
-        
-            
-        if (purchasedUpgrades[upgradeType]) {
-            return;
-        }
-
-        if (window.coins >= upgradeCost) {
-            window.coins -= upgradeCost; 
-            document.getElementById('TotalCoins').textContent = window.coins; 
-            purchasedUpgrades[upgradeType] = true; 
-            button.classList.add('success'); 
-            button.innerHTML = "Success!";
-            return;
-        } else {
-            function showErrorBtn(message, button){
-                const buttonId = button.id;
-                const originalHtml = button.innerHTML;
-                localStorage.setItem(`originalHtml_${buttonId}`, originalHtml); // сохраняем исходный HTML в localStorage
-                button.classList.add('error');
-                button.innerHTML = message;
-                console.warn("Not enough coins to purchase upgrade.");
-                setTimeout(()=>{
-                    button.classList.remove('error');
-                    button.innerHTML = originalHtml; // восстанавливаем исходный HTML из localStorage
-                },1000)
-            }
-            
-            showErrorBtn("Not Cash!", button);
-        }
-    }
-
-
     const buttons = document.querySelectorAll('.buy_btn');
     buttons.forEach(button => {
         const upgradeType = button.getAttribute('data-upgrade-type');
         if (purchasedUpgrades[upgradeType]) {
             button.classList.add('active'); 
         }
+        button.removeEventListener('click', purchaseUpgrade); // Prevent multiple attachments
         button.addEventListener('click', (event) => {
             event.stopPropagation(); // Prevents the event from bubbling up
             purchaseUpgrade(button.getAttribute('data-upgrade-type'), button);
         });
     });
-
-
 }
 
-function showNotification(message) {
-    const notification = document.getElementById('notification');
-    const notificationText = document.getElementById('notification-text');
-    notificationText.textContent = message;
-    notification.classList.remove('hidden');
+function purchaseUpgrade(upgradeType, button) {
+    const upgradeCost = parseInt(button.getAttribute('data-cost'));
+
+    // Prevent multiple purchases
+    if (button.classList.contains('success')) {
+        console.warn("Upgrade already purchased.");
+        return;
+    }
+
+    if (purchasedUpgrades[upgradeType]) {
+        console.warn("Upgrade already purchased.");
+        return;
+    }
+
+    // Disable button to prevent multiple clicks
+    button.disabled = true;
+
+    if (window.coins >= upgradeCost) {
+        window.coins -= upgradeCost; 
+        document.getElementById('TotalCoins').textContent = window.coins; 
+        purchasedUpgrades[upgradeType] = true; 
+        button.classList.add('success'); 
+        button.innerHTML = "Success!";
+        return;
+    } else {
+        if (!button.classList.contains('error')) {
+            console.warn("Not enough coins to purchase upgrade.");
+            showErrorBtn("Not Cash!", button);
+        }
+    }
+
+    // Re-enable button after a short delay
     setTimeout(() => {
-        notification.classList.add('hidden');
-    }, 3000);
-};
+        button.disabled = false;
+    }, 1000);
+}
+
+function showErrorBtn(message, button){
+    const buttonId = button.id;
+    const originalHtml = button.innerHTML;
+    localStorage.setItem(`originalHtml_${buttonId}`, originalHtml); // сохраняем исходный HTML в localStorage
+    button.classList.add('error');
+    button.innerHTML = message;
+    setTimeout(()=>{
+        button.classList.remove('error');
+        button.innerHTML = originalHtml; // восстанавливаем исходный HTML из localStorage
+    },1000)
+}
