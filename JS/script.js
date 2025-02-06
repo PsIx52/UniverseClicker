@@ -46,21 +46,8 @@ document.getElementById('click-button').addEventListener('click', () => {
     if (energy <= 1) {
         document.getElementById('Energy').textContent = "0/100";
         document.getElementById('Energy').style.color = "red"; // Change color to red
-        
-        // Change notification background to red
-        const notification = document.getElementById('notification');
-        
-        if (notification) {
-            console.log('Текущий цвет фона:', notification.style.backgroundColor); // Проверяем текущий цвет
-            notification.style.backgroundColor = ' '; 
-            notification.style.backgroundColor = 'red'; // Меняем цвет фона на красный
-            console.log('Новый цвет фона:', notification.style.backgroundColor); // Проверяем новый цвет
-        } else {
-            console.error('Элемент notification не найден');
-        }
-        
-        // Show notification after changing the background color
-        showNotification('Энергия закончилась!'); // Notify user about energy depletion
+
+        showLowEnergy();
     }
 });
 
@@ -93,6 +80,16 @@ function showNotification(message) {
     }, 3000);
 };
 
+function showNotificationError(message) {
+    const notificationError = document.getElementById('notification-error');
+    const notificationErrorText = document.getElementById('notification-error-text');
+    notificationErrorText.textContent = message;
+    notificationError.classList.remove('hidden');
+    setTimeout(() => {
+        notificationError.classList.add('hidden');
+    }, 3000);
+};
+
 document.getElementById('leaderboard-button').addEventListener('click', showLeaderboard);
 document.getElementById('settings-button').addEventListener('click', showSettings);
 
@@ -105,3 +102,7 @@ export function showSettings() { // Export the function
     console.log("showSettings function called"); // Log when the function is called
     showNotification('Настройки скоро будут доступны!');
 };
+
+function showLowEnergy(){
+    showNotificationError('Нет энергии!');
+}
