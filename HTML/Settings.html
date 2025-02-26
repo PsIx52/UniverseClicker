@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=375px, initial-scale=1.0">
+    <title>Настройки</title>
+    <!-- Подключение стилей и скриптов -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://ai-public.creatie.ai/gen_page/tailwind-custom-v2.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
+    <script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#000000" data-border-radius="small"></script>
+</head>
+<body class="bg-black text-white min-h-screen flex items-center justify-center">
+    <!-- Шапка страницы -->
+    <header class="fixed top-0 w-full bg-custom z-50 px-4 py-3 flex items-center justify-between backdrop-blur-md border-b border-gray-800">
+        
+        <button class="text-white">
+            <i class="fas fa-arrow-left text-lg"></i>
+        </button>
+        <h1 class="text-lg font-medium w-full text-center">Настройки</h1>
+    </header>
+
+    <!-- Основное содержимое страницы -->
+    <main class="pt-16 px-4 pb-24">
+        <!-- Секция основных настроек -->
+        <section class="mb-8">
+            <h2 class="text-gray-400 text-sm mb-4">Основные настройки</h2>
+            <div class="space-y-4">
+                <!-- Настройка анимации монет -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-white">Анимация монет</p>
+                        <p class="text-gray-500 text-sm">Включить анимацию при получении монет</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="sr-only peer" checked>
+                        <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"></div>
+                    </label>
+                </div>
+                <!-- Настройка вибрации -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-white">Вибрация</p>
+                        <p class="text-gray-500 text-sm">Включить тактильный отклик</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="sr-only peer">
+                        <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"></div>
+                    </label>
+                </div>
+                <!-- Настройка уведомлений -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-white">Уведомления</p>
+                        <p class="text-gray-500 text-sm">Получать уведомления о достижениях</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="sr-only peer">
+                        <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"></div>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция дополнительных настроек -->
+        <section class="mb-8">
+            <h2 class="text-gray-400 text-sm mb-4">Дополнительно</h2>
+            <div class="space-y-4">
+                <!-- Кнопка очистки кэша -->
+                <button class="w-full flex items-center justify-between bg-gray-900 p-4 rounded-lg">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-trash-alt text-gray-400"></i>
+                        <span>Очистить кэш</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </button>
+                <!-- Кнопка выбора языка -->
+                <button class="w-full flex items-center justify-between bg-gray-900 p-4 rounded-lg">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-globe text-gray-400"></i>
+                        <span>Язык приложения</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-gray-400">Русский</span>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <!-- Секция опасной зоны -->
+        <section>
+            <h2 class="text-gray-400 text-sm mb-4">Опасная зона</h2>
+            <!-- Кнопка удаления аккаунта -->
+            <button class="w-full bg-red-600 text-white p-4 rounded-lg flex items-center justify-center gap-2">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>Удалить аккаунт</span>
+            </button>
+        </section>
+    </main>
+</body>
+</html>
