@@ -45,11 +45,26 @@ window.showUpgrades = function(buttonNumber) {
 
     function showModal(modal) {
         if (modal) {
-            console.log("Showing Modal:", modal); // Логируем отображаемую модалку
+            console.log("Showing Modal:", modal);
             modal.classList.remove("hidden");
         }
     }
     hideAllModals();
+    
+    switch (buttonNumber) {
+        case 1:
+            showModal(listUpgrade1);
+            break;
+        case 2:
+            showModal(listUpgrade2);
+            break;
+        case 3:
+            showModal(listUpgrade3);
+            break;
+        default:
+            break;
+    }
+
 
     switch (buttonNumber) {
         case 1:
@@ -74,9 +89,9 @@ window.showUpgrades = function(buttonNumber) {
         if (purchasedUpgrades[upgradeType]) {
             button.classList.add('active'); 
         }
-        button.removeEventListener('click', purchaseUpgrade); // Prevent multiple attachments
+        button.removeEventListener('click', purchaseUpgrade); 
         button.addEventListener('click', (event) => {
-            event.stopPropagation(); // Prevents the event from bubbling up
+            event.stopPropagation(); 
             purchaseUpgrade(button.getAttribute('data-upgrade-type'), button);
         });
     });
@@ -85,7 +100,7 @@ window.showUpgrades = function(buttonNumber) {
 function purchaseUpgrade(upgradeType, button) {
     const upgradeCost = parseInt(button.getAttribute('data-cost'));
 
-    // Prevent multiple purchases
+
     if (button.classList.contains('success')) {
         console.warn("Upgrade already purchased.");
         return;
@@ -96,7 +111,6 @@ function purchaseUpgrade(upgradeType, button) {
         return;
     }
 
-    // Disable button to prevent multiple clicks
     button.disabled = true;
 
     if (window.coins >= upgradeCost) {
