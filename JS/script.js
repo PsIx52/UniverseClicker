@@ -89,20 +89,27 @@ function showNotificationError(message) {
         notificationError.classList.add('hidden');
     }, 3000);
 };
-
+/*
+ 
+ 
 document.getElementById('leaderboard-button').addEventListener('click', showLeaderboard);
-document.getElementById('settings-button').addEventListener('click', showSettings);
+
 
 export function showLeaderboard() { // Export the function
     console.log("showLeaderboard function called"); // Log when the function is called
     showNotification('Таблица лидеров скоро будет доступна!');
 };
 
+
+document.getElementById('settings-button').addEventListener('click', showSettings);
+
 export function showSettings() { // Export the function
     console.log("showSettings function called"); // Log when the function is called
     showNotification('Настройки скоро будут доступны!');
 };
+*/
 
 function showLowEnergy(){
     showNotificationError('Нет энергии!');
 }
+
