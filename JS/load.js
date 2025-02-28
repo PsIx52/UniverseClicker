@@ -1,6 +1,6 @@
 console.log("load.js загружен");
 
-import { setActiveButton } from './shop.js'; // Импортируем функцию
+import { setActiveButton} from './shop.js'; // Импортируем функцию
 
 const shopButton = document.getElementById('shop-button');
 if (shopButton) {
@@ -13,7 +13,10 @@ if (shopButton) {
             })
             .then(data => {
                 document.getElementById('shop-modal').innerHTML = data; // Вставляем HTML контент
-                setActiveButton(1);
+
+                // Инициализируем магазин после загрузки
+                setActiveButton(1); // Устанавливаем активную кнопку
+                showUpgrades(1);    // Показываем первую вкладку и инициализируем кнопки
 
             })
             .catch(error => {
