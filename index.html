@@ -4,6 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
     <title>UniverseClicker</title>
+    <link rel="shortcut icon" type="image/png" href="pictures/black-hole.png" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
     <link href="https://ai-public.creatie.ai/gen_page/tailwind-custom-v2.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
@@ -24,7 +25,7 @@
  
     <!-- HEADER-->
     <header class="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-gray-800">
-        <!-- notification-->
+        
         <div id="notification" class="fixed top-0 left-0 right-0 z-50 hidden">        
             <div class="text-white text-center py-2 px-4" style="background-color: #3ab130;">
                 <span id="notification-text"></span>
@@ -38,9 +39,9 @@
         </div>
         
         <div  class="flex items-center justify-between px-4 py-4">
-            <button class="text-xl" id="leaderboard-button">
-                <a href="HTML/LeaderBoard.html" class="fas fa-trophy text-yellow-600"></a>
-            </button>  
+            
+                <a href="HTML/LeaderBoard.html" class="fas fa-trophy text-yellow-600 text-xl"></a>
+
             <div class="flex items-center justify-between space-x-4">
                 <div class="flex items-center">
                     <i class="fas fa-gem text-purple-400 mx-2"></i>
@@ -54,9 +55,8 @@
                 </div>
             </div>
             
-            <button class="text-xl" id="settings-button">
-                <a href="HTML/Settings.html" class="fas fa-cog text-gray-700"></a>
-            </button>
+                <a href="HTML/Settings.html" class="fas fa-cog text-gray-700 text-xl"></a>
+
         </div>
     </header>
 
@@ -121,6 +121,5 @@
     <script src="JS/modal.js" type="module"></script>
     <script src="JS/load.js" type="module"></script>
     <script src="JS/shop.js" type="module"></script>
-    <script src="JS/static.js"></script>
 </body>
 </html>
