@@ -11,22 +11,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/glide.min.js"></script>
     <script src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
     <script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#000000" data-border-radius="small"></script>
+    <style>
+        *{
+            user-select: none;
+            resize: none;
+        }
+        body{
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body class="bg-black text-white min-h-screen flex items-center justify-center">
     <header class="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-gray-800">
         <div class="flex items-center justify-between px-4 py-4">
             <div class="flex items-center gap-2">
 
-                <button class="text-white">
-                    <i class="fas fa-arrow-left text-lg"></i>
-                </button>
+                    <a href="/index.html" class="fas fa-arrow-left text-lg text-white"></a>
 
                 <i class="fas fa-trophy text-yellow-600 text-xl"></i>
                 <span class="font-semibold">LeaderBoard</span>
             </div>
-            <div class="flex items-center gap-4 text-xl">
-                <i class="fas fa-cog text-gray-700"></i>
-            </div>
+
+            <a href="./Settings.html" class="fas fa-cog text-gray-700 text-xl"></a>
         </div>
     </header>
 
@@ -39,10 +45,10 @@
                         <img src="/pictures/banner1.jpg" alt="Баннер 1" class="w-full h-[150px] object-cover">
                     </li>
                     <li class="glide__slide">
-                        <img src="/pictures/banner2.jpg" alt="Баннер 1" class="w-full h-[150px] object-cover">                    
+                        <img src="/pictures/banner2.jpg" alt="Баннер 2" class="w-full h-[150px] object-cover">                    
                     </li>
                     <li class="glide__slide">
-                        <img src="/pictures/banner3.jpg" alt="Баннер 1" class="w-full h-[150px] object-cover">
+                        <img src="/pictures/banner3.jpg" alt="Баннер 3" class="w-full h-[150px] object-cover">
                     </li>
                 </ul>
             </div>
@@ -114,7 +120,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="space-y-3"></div>
             </div>
         </div>
     </main>
