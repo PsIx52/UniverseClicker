@@ -1,5 +1,3 @@
-
-// Выбор языка
 const languageBtn = document.getElementById('languageBtn');
 const languageMenu = document.getElementById('languageMenu');
 const arrow = document.getElementById('arrow');
